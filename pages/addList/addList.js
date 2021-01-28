@@ -7,15 +7,16 @@ Page({
    */
   data: {
 
-
+    author: '请选择分类',
     form: {
-
       sum: 0,
       checked: false,
       show: false,
       img: '',
       uploadImg: true,
-
+      banImg: '',
+      bannerImg: true,
+      author: ''
     },
 
   },
@@ -28,7 +29,15 @@ Page({
     })
     console.log(that.data.form)
   },
-
+  //删除banner图片
+  remBanImg() {
+    const that = this;
+    that.setData({
+      [`form.bannerImg`]: true,
+      [`form.banImg`]: ''
+    })
+    console.log(that.data.form)
+  },
   //轮播
   switchChange: function (e) {
     const that = this;
@@ -80,7 +89,43 @@ Page({
       }
     })
   },
+  //上传banner图片
+  uploadBanImg() {
+    const that = this;
+    wx.chooseImage({
+      count: 1,
+      success: function (res) {
+        wx.showLoading({
+          title: '上传中...',
+        })
+        console.log(res, 11111)
+        const tempFilePaths = res.tempFilePaths[0];
+        //声明图片名字为时间戳和随机数拼接成的，尽量确保唯一性
+        let time = Date.now() + parseInt(Math.random() * 999) + parseInt(Math.random() * 2222);
+        //拓展名
+        var fileExt = tempFilePaths.replace(/.+\./, "");
+        //拼接成图片名
+        let keepname = time + '.' + fileExt;
+        wx.cloud.uploadFile({
+          cloudPath: keepname,
+          filePath: tempFilePaths, // 文件路径
+        }).then(res => {
+          // get resource ID
+          console.log(res.fileID)
+          wx.hideLoading()
+          that.setData({
 
+            [`form.bannerImg`]: false,
+            [`form.banImg`]: res.fileID
+
+          })
+        }).catch(error => {
+          // handle error
+        })
+
+      }
+    })
+  },
 
   //获取文章字
   getName(e) {
@@ -116,7 +161,7 @@ Page({
     const that = this;
     const form = that.data.form;
 
-    if (form.img != '') {
+    if (form.img != '' && form.author != '') {
       if (that.data.modification) {
         wx.showLoading({
           title: '加载中...',
@@ -126,7 +171,8 @@ Page({
 
             sum: form.sum,
             img: form.img,
-
+            banImg: form.banImg,
+            author: form.author,
             checked: form.checked,
             show: form.show,
             banner: form.checked,
@@ -145,9 +191,10 @@ Page({
       } else {
         db.collection('test').add({
           data: {
-
+            author: form.author,
             sum: form.sum,
             img: form.img,
+            banImg: form.banImg,
             checked: form.checked,
             show: form.show,
             banner: form.checked,
@@ -171,6 +218,34 @@ Page({
       })
     }
   },
+  //选着分类
+  opction() {
+    const that = this;
+    wx.showActionSheet({
+      itemList: ['生肖', '清新'],
+      success(res) {
+        let author = '';
+        switch (res.tapIndex + 1) {
+          case 1:
+            that.setData({
+              ['form.author']: res.tapIndex + 1,
+              author: '生肖'
+            })
+            return;
+          case 2:
+            that.setData({
+              ['form.author']: res.tapIndex + 1,
+              author: '清新'
+            })
+            return;
+        }
+
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -187,27 +262,33 @@ Page({
     if (options.id) {
       db.collection('test').doc(options.id).get().then(res => {
         console.log(res)
+        
         wx.hideLoading()
         that.setData({
           form: res.data,
           modification: true
         })
+        if (res.data.banImg) {
+          that.setData({
+            [`form.bannerImg`]: false,
+          })
+        } else {
+          that.setData({
+            [`form.bannerImg`]: true,
+          })
+        }
         switch (res.data.author) {
           case 1:
             that.setData({
-              author: '情感'
+              author: '生肖'
             })
             return;
           case 2:
             that.setData({
-              author: '心理'
+              author: '清新'
             })
             return;
-          case 3:
-            that.setData({
-              author: 'IQ'
-            })
-            return;
+
         }
       })
     } else {

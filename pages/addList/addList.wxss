@@ -1,14 +1,20 @@
 /* pages/addVideo/addVideo.wxss */
-
+.list{
+  margin-top: 20rpx;
+}
 .list .item {
   display: flex;
   width: 600rpx;
   margin: 0 auto;
   position: relative;
 }
+.list .item:first-child{
+  margin-bottom: 10rpx;
+}
+
 
 .list .item label {
-  width: 100rpx;
+  width: 120rpx;
   line-height: 100rpx;
   font-size: 30rpx;
   font-weight: bold;
