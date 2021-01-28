@@ -1,0 +1,31 @@
+<!--pages/addVideo/addVideo.wxml-->
+<view class="container">
+  <view class="list">
+   
+    <view class="item">
+      <label>数量</label>
+      <input type="text" value="{{form.sum}}" placeholder="请输数量" bindinput='getsum'></input>
+    </view>
+   
+    <view class="item">
+      <label>轮播</label>
+      <switch class="switch" checked='{{form.checked}}' bindchange="switchChange" />
+    </view>
+     <view class="item">
+      <label>显示</label>
+      <switch class="switch" checked='{{form.show}}' bindchange="switchShowChange" />
+    </view>
+    <view class="item">
+      <label>图片</label>
+      <image wx:if='{{form.uploadImg}}' class="uploadImg" src="/img/upload.png" bindtap="uploadImg"></image>
+      <block wx:else>
+        <image mode="aspectFill" class="topImg" src="{{form.img}}"></image>
+        <image class="remove" src="/img/remove.png" bindtap="remImg"></image>
+      </block>
+    </view>
+    
+  </view>
+  <view class="btn" bindtap="btn">提交</view>
+  <view class="addBtn" bindtap="addBtn">添加</view>
+
+</view>

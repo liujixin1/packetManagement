@@ -1,0 +1,11 @@
+/**app.wxss**/
+@import "./common/style/iconfont.wxss";
+button {
+  font-size: 28rpx;
+  background:none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  border-radius:0;
+}
