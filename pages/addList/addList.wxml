@@ -38,6 +38,6 @@
 
   </view>
   <view class="btn" bindtap="btn">提交</view>
-  <view class="addBtn" bindtap="addBtn">添加</view>
+  <!-- <view class="addBtn" bindtap="addBtn">添加</view> -->
 
 </view>
