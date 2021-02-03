@@ -49,10 +49,10 @@
 .main .add{
   width: 100%;
   height: 80rpx;
-  position: fixed;
-  top: 0;
+  /* position: fixed; */
+  /* top: 0;
   right: 0;
-  z-index: 10;
+  z-index: 10; */
   background: #fff;
   display: flex;
 }
@@ -60,13 +60,13 @@
   width: 120rpx;
   height: 60rpx;
   margin: 10rpx;
-  margin-left: auto;
   text-align: center;
   line-height: 60rpx;
   font-size: 26rpx;
   background: #67c23a;
   border-radius: 10rpx;
   color: #fff;
+  margin-left: 55rpx;
   
 }
 
@@ -77,7 +77,7 @@
   text-align: center;
   font-size: 24rpx;
   border-bottom: 2rpx solid #f8f8f8;
-  margin-top: 80rpx;
+  /* margin-top: 80rpx; */
 }
 
 .main .title .titleSerialNumber {
@@ -156,4 +156,16 @@
   line-height: 60rpx;
   font-size: 22rpx;
   color: #999;
+}
+.item {
+  display: flex;
+  width: 600rpx;
+  position: relative;
+  line-height: 80rpx;
+}
+.switch{
+  margin-left: 5rpx;
+}
+.official{
+  color:#409EFF
 }

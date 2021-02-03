@@ -12,7 +12,9 @@ Page({
     navid: '1',
     checked: null,
     isEnd: false,
-    page: 0
+    page: 0,
+    model:'',
+    modelId:''
   },
  
   delete(e) {
@@ -40,6 +42,28 @@ Page({
       }
     })
 
+  },
+  //切换审核状态
+  switchShowChange(e) {
+    const that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
+    db.collection('model').doc(that.data.modelId).update({
+      data: {
+       bool:e.detail.value
+      }
+    })
+    .then(res => {
+      if(res.stats.updated==1){
+        wx.showToast({
+          icon: 'success',
+          title: '切换成功'
+        })
+      }
+      wx.hideLoading()
+
+    })
   },
   getData(nav) {
     const that = this;
@@ -177,7 +201,13 @@ Page({
    */
   onLoad: function(options) {
     const that = this;
-
+    db.collection('model').get().then(res => {
+      console.log(res,9999)
+      that.setData({
+        model:res.data[0].bool,
+        modelId:res.data[0]._id
+      })
+    })
     that.setData({
       navid: options.id || '1'
     })

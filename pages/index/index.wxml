@@ -5,10 +5,12 @@
     <view data-navid = '2' class="navItem {{navid == 2?'active':''}}" bindtap="tabNav">轮播图列表</view>
   </view>
   <view class="main">
-    <view class="add">
+    <view class="item">
+      <label>审核模式</label>
+      <switch class="switch" checked='{{model}}' bindchange="switchShowChange" />
+      <label class="official" >正式模式</label>
       <view class="addItem" bindtap="addData">新增</view>
     </view>
-    <!-- <text class='iconfont icon-add'></text> -->
     <view class="title">
       <view class="titleSerialNumber">序号</view>
       <!-- <view class="titleId">ID</view>

@@ -76,7 +76,7 @@ Page({
           filePath: tempFilePaths, // 文件路径
         }).then(res => {
           // get resource ID
-          console.log(res.fileID)
+          // console.log(res.fileID)
           wx.hideLoading()
           that.setData({
             [`form.uploadImg`]: false,
@@ -181,13 +181,14 @@ Page({
           }
 
         })
-        setTimeout(() => {
-          wx.hideLoading()
+        .then(res => {
+          console.log(88)
           wx.navigateTo({
             url: '/pages/index/index?id=1'
           })
-        }, 500)
+          wx.hideLoading()
 
+        })
       } else {
         db.collection('test').add({
           data: {
@@ -202,13 +203,15 @@ Page({
             status: 1,
             date: new Date()
           }
-        })
-        setTimeout(() => {
-          wx.hideLoading()
+        }).then(res => {
+          console.log(99)
           wx.navigateTo({
             url: '/pages/index/index?id=1'
           })
-        }, 500)
+          wx.hideLoading()
+
+        })
+       
       }
 
     } else {
