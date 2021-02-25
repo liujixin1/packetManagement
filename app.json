@@ -1,14 +1,42 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/addList/addList"
-    
+    "pages/addList/addList",
+    "pages/gold/gold",
+    "pages/award/award",
+    "pages/addAward/addAward"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "后台管理",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/index.png",
+        "selectedIconPath": "img/index1.png",
+        "text": "成语"
+      },
+      {
+        "pagePath": "pages/gold/gold",
+        "iconPath": "img/find.png",
+        "selectedIconPath": "img/find1.png",
+        "text": "现金"
+      },
+      {
+        "pagePath": "pages/award/award",
+        "iconPath": "img/person.png",
+        "selectedIconPath": "img/person1.png",
+        "text": "红包"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

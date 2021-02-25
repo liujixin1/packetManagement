@@ -1,0 +1,36 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/addList/addList",
+          "pathName": "pages/addList/addList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/award/award",
+          "pathName": "pages/award/award",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/addAward/addAward",
+          "pathName": "pages/addAward/addAward",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

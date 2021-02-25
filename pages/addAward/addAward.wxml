@@ -1,0 +1,55 @@
+<!--pages/addVideo/addVideo.wxml-->
+<view class="container">
+  <view class="list">
+    <view class="item">
+      <label>图片</label>
+      <image wx:if='{{form.uploadImg}}' class="uploadImg" src="/img/upload.png" bindtap="uploadImg"></image>
+      <block wx:else>
+        <image mode="aspectFill" class="topImg" src="{{form.img}}"></image>
+        <image class="remove" src="/img/remove.png" bindtap="remImg"></image>
+      </block>
+    </view>
+    <!-- <view class="item">
+      <label>banner</label>
+      <image wx:if='{{form.bannerImg}}' class="uploadImg" src="/img/upload.png" bindtap="uploadBanImg"></image>
+      <block wx:else>
+        <image mode="aspectFill" class="topImg" src="{{form.banImg}}"></image>
+        <image class="remove" src="/img/remove.png" bindtap="remBanImg"></image>
+      </block>
+    </view> -->
+    <!-- <view class="item">
+      <label>分类</label>
+      <view bindtap="opction">{{author}}</view>
+    </view> -->
+    <view class="item">
+      <label>名字</label>
+      <input type="text" value="{{form.name}}" placeholder="请输名字" bindinput='getName'></input>
+    </view>
+    <view class="item">
+      <label>金额</label>
+      <input type="text" value="{{form.num}}" placeholder="请输金额" bindinput='getNum'></input>
+    </view>
+    <view class="item">
+      <label>领数</label>
+      <input type="text" value="{{form.sum}}" placeholder="请输领数" bindinput='getSum'></input>
+    </view>
+    <view class="item">
+      <label>总数</label>
+      <input type="text" value="{{form.overall}}" placeholder="请输总数" bindinput='getOverall'></input>
+    </view>
+
+    <!-- <view class="item">
+      <label>轮播</label>
+      <switch class="switch" checked='{{form.checked}}' bindchange="switchChange" />
+    </view> -->
+    <view class="item">
+      <label>显示</label>
+      <switch class="switch" checked='{{form.show}}' bindchange="switchShowChange" />
+    </view>
+
+
+  </view>
+  <view class="addBtn" bindtap="btn">提交</view>
+  <!-- <view class="addBtn" bindtap="addBtn">添加</view> -->
+
+</view>

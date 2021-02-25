@@ -1,0 +1,35 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="main">
+   
+      <view class="addItem" bindtap="addData">新增</view>
+    <view class="title">
+      <view class="titleSerialNumber">序号</view>
+      <!-- <view class="titleId">ID</view>
+      <view class="titleName">列表名</view> -->
+      <view class="titleImg">图片</view>
+      <view class="titleOperation">操作</view>
+
+    </view>
+    <view class="list">
+    <block wx:for='{{listData}}' wx:key='item'> 
+    <view class="listItem">
+        <view class="SerialNumber">{{item.index}}</view>
+        <!-- <view class="id">{{item.itemId}}</view> -->
+
+        <!-- <view class="name">{{item.name}}</view> -->
+        <view class="img">
+          <image mode="aspectFill" src="{{item.img}}"></image>
+        </view>
+        <view class="operation">
+          <image bindtap="addData" data-id = '{{item._id}}' data-status = '{{item.status}}' src="/img/modification.png"></image>
+          <image data-id = '{{item._id}}' src="/img/delete.png" bindtap="delete"></image>
+        </view>
+      </view>
+    </block>
+      
+    </view>
+  <view class="isEnd" wx:if="{{isEnd}}">没有更多了~</view>
+
+  </view>
+</view>
