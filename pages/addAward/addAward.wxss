@@ -113,7 +113,6 @@
   width: 400rpx;
   height: 400rpx;
 }
-
 .remove {
   position: absolute;
   top: -10rpx;
@@ -124,7 +123,6 @@
   background: #fff;
   border-radius: 50%;
 }
-
 .removeVideo {
   position: absolute;
   top: -10rpx;
