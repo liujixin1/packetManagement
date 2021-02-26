@@ -1,0 +1,167 @@
+/* pages/addVideo/addVideo.wxss */
+.list{
+  margin-top: 20rpx;
+}
+.list .item {
+  display: flex;
+  width: 600rpx;
+  margin: 0 auto;
+  position: relative;
+}
+.list .item:first-child{
+  margin-bottom: 10rpx;
+}
+
+
+.list .item label {
+  width: 120rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #222;
+}
+
+.list .item input {
+  font-size: 26rpx;
+  height: 70rpx;
+  margin-top: 15rpx;
+  width: 480rpx;
+  border: 1rpx solid #e8e8e8;
+  padding-left: 10rpx;
+  color: #999;
+}
+
+.list .item view {
+  font-size: 26rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-top: 15rpx;
+  width: 480rpx;
+  border: 1rpx solid #e8e8e8;
+  padding-left: 10rpx;
+  color: #999;
+}
+
+.list .item .uploadImg {
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 15rpx;
+}
+
+.testList {
+  border-top: 10rpx solid #eee;
+  margin-top: 10rpx;
+  overflow: hidden;
+  padding-bottom: 20rpx;
+
+}
+
+.testListItemTitle {
+  height: 80rpx;
+  font-size: 30rpx;
+  color: #222;
+  text-align: center;
+  line-height: 80rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #eee;
+}
+
+.btn {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 0;
+  border-top-left-radius: 50rpx;
+  border-bottom-left-radius: 50rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  line-height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  background: #67c23a;
+  color: #fff;
+}
+
+.addBtn {
+  justify-content: space-between;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  padding: 0 50rpx;
+  box-sizing: border-box;
+  width: 500rpx;
+  text-align: center;
+  z-index: 10;
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  border-radius: 45rpx;
+  color: #fff;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.topImgCenter {
+  width: 480rpx;
+  height: 200rpx;
+}
+
+.topImg {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.remove {
+  position: absolute;
+  top: -10rpx;
+  right: -15rpx;
+  width: 70rpx;
+  height: 70rpx;
+  z-index: 10;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.removeVideo {
+  position: absolute;
+  top: -10rpx;
+  right: -15rpx;
+  width: 70rpx;
+  height: 70rpx;
+  z-index: 10;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.switch {
+  line-height: 100rpx;
+}
+
+.testListItem .itemImgList {
+  margin-top: 20rpx;
+}
+
+.textarea {
+  font-size: 26rpx;
+  height: 100rpx;
+  margin-top: 15rpx;
+  width: 470rpx;
+  border: 1rpx solid #e8e8e8;
+  padding: 10rpx;
+  color: #999;
+}
+.delete{
+  width: 120rpx;
+  height: 60rpx;
+  margin: 0 auto;
+  margin-top: 10rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #fff;
+  background: red;
+  font-size: 24rpx;
+}
