@@ -9,35 +9,37 @@
         <image class="remove" src="/img/remove.png" bindtap="remImg"></image>
       </block>
     </view>
-    <!-- <view class="item">
-      <label>banner</label>
-      <image wx:if='{{form.bannerImg}}' class="uploadImg" src="/img/upload.png" bindtap="uploadBanImg"></image>
-      <block wx:else>
-        <image mode="aspectFill" class="topImg" src="{{form.banImg}}"></image>
-        <image class="remove" src="/img/remove.png" bindtap="remBanImg"></image>
-      </block>
-    </view> -->
+    <view class="item idiom">
+      <label>成语</label>
+      <input type="text" data-inputid='0' value="{{form.idiom[0]}}" bindinput='getIdiom'></input>
+      <input type="text" data-inputid='1' value="{{form.idiom[1]}}" bindinput='getIdiom'></input>
+      <input type="text" data-inputid='2' value="{{form.idiom[2]}}" bindinput='getIdiom'></input>
+      <input type="text" data-inputid='3' value="{{form.idiom[3]}}" bindinput='getIdiom'></input>
+    </view>
+    <view class="item idiom">
+      <label>选择</label>
+      <input type="text" data-inputid='0' value="{{form.choose[0].text}}" bindinput='getChoose'></input>
+      <input type="text" data-inputid='1' value="{{form.choose[1].text}}" bindinput='getChoose'></input>
+      <input type="text" data-inputid='2' value="{{form.choose[2].text}}" bindinput='getChoose'></input>
+      <input type="text" data-inputid='3' value="{{form.choose[3].text}}" bindinput='getChoose'></input>
+    </view>
     <view class="item">
-      <label>分类</label>
+      <label>级别</label>
       <view bindtap="opction">{{author}}</view>
     </view>
     <view class="item">
-      <label>数量</label>
-      <input type="text" value="{{form.sum}}" placeholder="请输数量" bindinput='getsum'></input>
+      <label>答案</label>
+      <view bindtap="answer">{{answer}}</view>
     </view>
-
     <view class="item">
-      <label>轮播</label>
-      <switch class="switch" checked='{{form.checked}}' bindchange="switchChange" />
+      <label>金额</label>
+      <input type="text" value="{{form.sum}}" placeholder="请输金额" bindinput='getsum'></input>
     </view>
     <view class="item">
       <label>显示</label>
       <switch class="switch" checked='{{form.show}}' bindchange="switchShowChange" />
     </view>
-
-
   </view>
   <view class="btn" bindtap="btn">提交</view>
-  <!-- <view class="addBtn" bindtap="addBtn">添加</view> -->
 
 </view>

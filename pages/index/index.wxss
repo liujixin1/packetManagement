@@ -33,10 +33,10 @@
 }
 
 .main {
-  width: 560rpx;
+  width: 100%;
   overflow: hidden;
   min-height: 100%;
-  margin-left: 190rpx;
+  /* margin-left: 190rpx; */
   background: #fff;
 }
 
@@ -66,7 +66,7 @@
   background: #67c23a;
   border-radius: 10rpx;
   color: #fff;
-  margin-left: 55rpx;
+  margin-left: 150rpx;
   
 }
 
@@ -159,9 +159,10 @@
 }
 .item {
   display: flex;
-  width: 600rpx;
+  width: 100%;
   position: relative;
   line-height: 80rpx;
+  margin-left: 30rpx;
 }
 .switch{
   margin-left: 5rpx;

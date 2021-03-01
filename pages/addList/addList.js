@@ -6,17 +6,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-
-    author: '请选择分类',
+    author: '请选择级别',
+    answer: '请选择答案',
     form: {
-      sum: 0,
-      checked: false,
-      show: false,
       img: '',
       uploadImg: true,
-      // banImg: '',
-      // bannerImg: true,
-      author: ''
+      idiom: ['', '', '', ''],
+      choose: [{
+          text: '',
+          bool: false
+        },
+        {
+          text: '',
+          bool: false
+        },
+        {
+          text: '',
+          bool: false
+        },
+        {
+          text: '',
+          bool: false
+        },
+      ],
+      answer: null,
+      author: '',
+      show: false,
+      sum: null
     },
 
   },
@@ -29,22 +45,7 @@ Page({
     })
     console.log(that.data.form)
   },
-  //删除banner图片
-  // remBanImg() {
-  //   const that = this;
-  //   that.setData({
-  //     [`form.bannerImg`]: true,
-  //     [`form.banImg`]: ''
-  //   })
-  //   console.log(that.data.form)
-  // },
-  //轮播
-  switchChange: function (e) {
-    const that = this;
-    that.setData({
-      ['form.checked']: e.detail.value
-    })
-  },
+
   //显示
   switchShowChange(e) {
     const that = this;
@@ -52,8 +53,22 @@ Page({
       ['form.show']: e.detail.value
     })
   },
-
-
+  getIdiom(e) {
+    const that = this;
+    let index = parseInt(e.currentTarget.dataset.inputid)
+    let val = e.detail.value;
+    that.setData({
+      [`form.idiom[${index}]`]: val,
+    })
+  },
+  getChoose(e) {
+    const that = this;
+    let index = parseInt(e.currentTarget.dataset.inputid)
+    let val = e.detail.value;
+    that.setData({
+      [`form.choose[${index}].text`]: val,
+    })
+  },
   //上传title图片
   uploadImg() {
     const that = this;
@@ -70,7 +85,7 @@ Page({
         //拓展名
         var fileExt = tempFilePaths.replace(/.+\./, "");
         //拼接成图片名
-        let keepname = time + '.' + fileExt;
+        let keepname =  'idiomImg/'+time + '.' + fileExt;
         wx.cloud.uploadFile({
           cloudPath: keepname,
           filePath: tempFilePaths, // 文件路径
@@ -89,43 +104,7 @@ Page({
       }
     })
   },
-  //上传banner图片
-  // uploadBanImg() {
-  //   const that = this;
-  //   wx.chooseImage({
-  //     count: 1,
-  //     success: function (res) {
-  //       wx.showLoading({
-  //         title: '上传中...',
-  //       })
-  //       console.log(res, 11111)
-  //       const tempFilePaths = res.tempFilePaths[0];
-  //       //声明图片名字为时间戳和随机数拼接成的，尽量确保唯一性
-  //       let time = Date.now() + parseInt(Math.random() * 999) + parseInt(Math.random() * 2222);
-  //       //拓展名
-  //       var fileExt = tempFilePaths.replace(/.+\./, "");
-  //       //拼接成图片名
-  //       let keepname = time + '.' + fileExt;
-  //       wx.cloud.uploadFile({
-  //         cloudPath: keepname,
-  //         filePath: tempFilePaths, // 文件路径
-  //       }).then(res => {
-  //         // get resource ID
-  //         console.log(res.fileID)
-  //         wx.hideLoading()
-  //         that.setData({
 
-  //           [`form.bannerImg`]: false,
-  //           [`form.banImg`]: res.fileID
-
-  //         })
-  //       }).catch(error => {
-  //         // handle error
-  //       })
-
-  //     }
-  //   })
-  // },
 
   //获取文章字
   getName(e) {
@@ -160,58 +139,55 @@ Page({
   btn() {
     const that = this;
     const form = that.data.form;
-
-    if (form.img != ''&&form.author != '') {
+    console.log(form,8888)
+    if (form.img != '' && form.author != '') {
       if (that.data.modification) {
         wx.showLoading({
           title: '加载中...',
         })
-        db.collection('test').doc(that.data.form._id).update({
-          data: {
-
-            sum: form.sum,
-            img: form.img,
-            // banImg: form.banImg,
-            author: form.author,
-            checked: form.checked,
-            show: form.show,
-            banner: form.checked,
-            status: 1,
-            date: new Date()
-          }
-
-        })
-        .then(res => {
-          console.log(88)
-          wx.navigateTo({
-            url: '/pages/index/index?id=1'
+        db.collection('idiom').doc(that.data.form._id).update({
+            data: {
+              img: that.data.form.img,
+              uploadImg: that.data.form.uploadImg,
+              idiom: that.data.form.idiom,
+              choose: that.data.form.choose,
+              answer: that.data.form.answer,
+              author: that.data.form.author,
+              show: that.data.form.show,
+              sum: that.data.form.sum,
+              date: new Date()
+            }
           })
-          wx.hideLoading()
+          .then(res => {
+            console.log(88)
+            wx.switchTab({
+              url: '/pages/index/index'
+            })
+            wx.hideLoading()
 
-        })
+          })
       } else {
-        db.collection('test').add({
+        db.collection('idiom').add({
           data: {
-            author: form.author,
-            sum: form.sum,
-            img: form.img,
-            // banImg: form.banImg,
-            checked: form.checked,
-            show: form.show,
-            banner: form.checked,
-            testList: form.testList,
-            status: 1,
+            img: that.data.form.img,
+            uploadImg: that.data.form.uploadImg,
+            idiom: that.data.form.idiom,
+            choose: that.data.form.choose,
+            answer: that.data.form.answer,
+            author: that.data.form.author,
+            show: that.data.form.show,
+            sum: that.data.form.sum,
             date: new Date()
           }
         }).then(res => {
           console.log(99)
-          wx.navigateTo({
-            url: '/pages/index/index?id=1'
+          wx.switchTab({
+            url: '/pages/index/index'
           })
           wx.hideLoading()
 
         })
-       
+
       }
 
     } else {
@@ -221,28 +197,88 @@ Page({
       })
     }
   },
+  //选择答案
+  answer() {
+    const that = this;
+    that.data.form.choose.forEach((item,index) => {
+      that.setData({
+        [`form.choose[${index}].bool`]: false
+      })
+    })
+    wx.showActionSheet({
+      itemList: ['1', '2', '3', '4'],
+      success(res) {
+        let author = '';
+        switch (res.tapIndex + 1) {
+          case 1:
+            that.setData({
+              [`form.choose[${res.tapIndex}].bool`]: true,
+              ['form.answer']: res.tapIndex + 1,
+              answer: '1'
+            })
+            return;
+          case 2:
+            that.setData({
+              [`form.choose[${res.tapIndex}].bool`]: true,
+              ['form.answer']: res.tapIndex + 1,
+              answer: '2'
+            })
+            return;
+          case 3:
+            that.setData({
+              [`form.choose[${res.tapIndex}].bool`]: true,
+              ['form.answer']: res.tapIndex + 1,
+              answer: '3'
+            })
+            return;
+          case 4:
+            that.setData({
+              [`form.choose[${res.tapIndex}].bool`]: true,
+              ['form.answer']: res.tapIndex + 1,
+              answer: '4'
+            })
+            return;
+        }
+
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
   //选着分类
   opction() {
     const that = this;
     wx.showActionSheet({
-      itemList: ['生肖', '清新'],
+      itemList: ['0-20', '20-25', '25-28', '>28'],
       success(res) {
         let author = '';
         switch (res.tapIndex + 1) {
           case 1:
             that.setData({
               ['form.author']: res.tapIndex + 1,
-              author: '生肖'
+              author: '0-20'
             })
             return;
           case 2:
             that.setData({
               ['form.author']: res.tapIndex + 1,
-              author: '清新'
+              author: '20-25'
+            })
+            return;
+          case 3:
+            that.setData({
+              ['form.author']: res.tapIndex + 1,
+              author: '25-28'
+            })
+            return;
+          case 4:
+            that.setData({
+              ['form.author']: res.tapIndex + 1,
+              author: '>28'
             })
             return;
         }
-
       },
       fail(res) {
         console.log(res.errMsg)
@@ -257,49 +293,38 @@ Page({
     wx.showLoading({
       title: '加载中...',
     })
-    // wx.loadFontFace({
-    //   family: 'Pacifico',
-    //   source: 'url("https://sungd.github.io/Pacifico.ttf")',
-    //   success: console.log
-    // })
-    if (options.id) {
-      db.collection('test').doc(options.id).get().then(res => {
-        console.log(res)
 
+    if (options.id) {
+      db.collection('idiom').doc(options.id).get().then(res => {
+        console.log(res)
         wx.hideLoading()
         that.setData({
           form: res.data,
-          modification: true
+          modification: true,
+          answer:res.data.answer
         })
-        // if (res.data.img) {
-        //   that.setData({
-        //     [`form.uploadImg`]: false,
-        //   })
-        // } else {
-        //   that.setData({
-        //     [`form.uploadImg`]: true,
-        //   })
-        // }
-        // if (res.data.banImg) {
-        //   that.setData({
-        //     [`form.bannerImg`]: false,
-        //   })
-        // } else {
-        //   that.setData({
-        //     [`form.bannerImg`]: true,
-        //   })
-        // }
+
         switch (res.data.author) {
           case 1:
             that.setData({
-              author: '生肖'
+              author: '0-20'
             })
             return;
           case 2:
             that.setData({
-              author: '清新'
+              author: '20-25'
             })
             return;
+            case 3:
+              that.setData({
+                author: '25-28'
+              })
+              return;
+              case 4:
+                that.setData({
+                  author: '>28'
+                })
+                return;
 
         }
       })
