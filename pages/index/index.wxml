@@ -13,8 +13,8 @@
     </view>
     <view class="title">
       <view class="titleSerialNumber">序号</view>
-      <view class="titleId">级别</view>
-      <view class="titleId">金额</view>
+      <view class="titleId">显示</view>
+      <!-- <view class="titleId">金额</view> -->
       <view class="titleId">答案</view>
       <view class="titleImg">图片</view>
       <view class="titleOperation">操作</view>
@@ -24,8 +24,8 @@
     <block wx:for='{{listData}}' wx:key='item'> 
     <view class="listItem">
         <view class="SerialNumber">{{item.index}}</view>
-        <view class="id">{{item.author}}</view>
-        <view class="id">{{item.sum}}</view>
+        <view class="id">{{item.show}}</view>
+        <!-- <view class="id">{{item.sum}}</view> -->
         <view class="id">{{item.answer}}</view>
         <view class="img">
           <image mode="aspectFill" src="{{item.img}}"></image>

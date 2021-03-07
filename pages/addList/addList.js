@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    author: '请选择级别',
+    // author: '请选择级别',
     answer: '请选择答案',
     form: {
       img: '',
@@ -30,9 +30,9 @@ Page({
         },
       ],
       answer: null,
-      author: '',
+      // author: '',
       show: false,
-      sum: null
+      // sum: null
     },
 
   },
@@ -120,13 +120,13 @@ Page({
       ['form.message']: e.detail.value
     })
   },
-  //测试人数
-  getsum(e) {
-    const that = this;
-    that.setData({
-      ['form.sum']: e.detail.value
-    })
-  },
+  //金额
+  // getsum(e) {
+  //   const that = this;
+  //   that.setData({
+  //     ['form.sum']: e.detail.value
+  //   })
+  // },
   //获取ID
   getId(e) {
     const that = this;
@@ -140,7 +140,7 @@ Page({
     const that = this;
     const form = that.data.form;
     console.log(form,8888)
-    if (form.img != '' && form.author != '') {
+    if (form.img != '' ) {
       if (that.data.modification) {
         wx.showLoading({
           title: '加载中...',
@@ -152,9 +152,9 @@ Page({
               idiom: that.data.form.idiom,
               choose: that.data.form.choose,
               answer: that.data.form.answer,
-              author: that.data.form.author,
+              // author: that.data.form.author,
               show: that.data.form.show,
-              sum: that.data.form.sum,
+              // sum: that.data.form.sum,
               date: new Date()
             }
           })
@@ -174,9 +174,9 @@ Page({
             idiom: that.data.form.idiom,
             choose: that.data.form.choose,
             answer: that.data.form.answer,
-            author: that.data.form.author,
+            // author: that.data.form.author,
             show: that.data.form.show,
-            sum: that.data.form.sum,
+            // sum: that.data.form.sum,
             date: new Date()
           }
         }).then(res => {
@@ -208,7 +208,6 @@ Page({
     wx.showActionSheet({
       itemList: ['1', '2', '3', '4'],
       success(res) {
-        let author = '';
         switch (res.tapIndex + 1) {
           case 1:
             that.setData({
@@ -247,44 +246,44 @@ Page({
     })
   },
   //选着分类
-  opction() {
-    const that = this;
-    wx.showActionSheet({
-      itemList: ['0-20', '20-25', '25-28', '>28'],
-      success(res) {
-        let author = '';
-        switch (res.tapIndex + 1) {
-          case 1:
-            that.setData({
-              ['form.author']: res.tapIndex + 1,
-              author: '0-20'
-            })
-            return;
-          case 2:
-            that.setData({
-              ['form.author']: res.tapIndex + 1,
-              author: '20-25'
-            })
-            return;
-          case 3:
-            that.setData({
-              ['form.author']: res.tapIndex + 1,
-              author: '25-28'
-            })
-            return;
-          case 4:
-            that.setData({
-              ['form.author']: res.tapIndex + 1,
-              author: '>28'
-            })
-            return;
-        }
-      },
-      fail(res) {
-        console.log(res.errMsg)
-      }
-    })
-  },
+  // opction() {
+  //   const that = this;
+  //   wx.showActionSheet({
+  //     itemList: ['0-20', '20-25', '25-28', '>28'],
+  //     success(res) {
+  //       let author = '';
+  //       switch (res.tapIndex + 1) {
+  //         case 1:
+  //           that.setData({
+  //             ['form.author']: res.tapIndex + 1,
+  //             author: '0-20'
+  //           })
+  //           return;
+  //         case 2:
+  //           that.setData({
+  //             ['form.author']: res.tapIndex + 1,
+  //             author: '20-25'
+  //           })
+  //           return;
+  //         case 3:
+  //           that.setData({
+  //             ['form.author']: res.tapIndex + 1,
+  //             author: '25-28'
+  //           })
+  //           return;
+  //         case 4:
+  //           that.setData({
+  //             ['form.author']: res.tapIndex + 1,
+  //             author: '>28'
+  //           })
+  //           return;
+  //       }
+  //     },
+  //     fail(res) {
+  //       console.log(res.errMsg)
+  //     }
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -304,29 +303,28 @@ Page({
           answer:res.data.answer
         })
 
-        switch (res.data.author) {
-          case 1:
-            that.setData({
-              author: '0-20'
-            })
-            return;
-          case 2:
-            that.setData({
-              author: '20-25'
-            })
-            return;
-            case 3:
-              that.setData({
-                author: '25-28'
-              })
-              return;
-              case 4:
-                that.setData({
-                  author: '>28'
-                })
-                return;
-
-        }
+        // switch (res.data.author) {
+        //   case 1:
+        //     that.setData({
+        //       author: '0-20'
+        //     })
+        //     return;
+        //   case 2:
+        //     that.setData({
+        //       author: '20-25'
+        //     })
+        //     return;
+        //     case 3:
+        //       that.setData({
+        //         author: '25-28'
+        //       })
+        //       return;
+        //       case 4:
+        //         that.setData({
+        //           author: '>28'
+        //         })
+        //         return;
+        // }
       })
     } else {
       wx.hideLoading()
